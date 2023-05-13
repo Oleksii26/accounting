@@ -1,5 +1,6 @@
 import axios from '../axios';
 import { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export const UploadDoc = () => {
     const filePicker = useRef(null)
@@ -53,9 +54,9 @@ export const UploadDoc = () => {
                 <input value={name} onChange={e => setName(e.target.value)} type='text' /><br />
                 <input value={datum} onChange={e => setDatum(e.target.value)} type='number' /><br />
             </div >
-            <a href="/">
-                <button onClick={onSubmit}>Submit</button>
-            </a>
+            <Link to="/">
+                <button type='submit' onClick={onSubmit}>Submit</button>
+            </Link>
             <button onClick={handlePick}>Pick file</button>
             <input
                 type='file'

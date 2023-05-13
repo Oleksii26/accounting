@@ -8,10 +8,10 @@ import { BrowserRouter } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter basename='/accounting/'>
-    <Provider store={store}>
+  <Provider store={store}>
+    <BrowserRouter basename='/accounting/'>
       <App />
-    </Provider>
-  </BrowserRouter>
+    </BrowserRouter>
+  </Provider>
 );
 
