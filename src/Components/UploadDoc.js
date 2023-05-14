@@ -64,13 +64,13 @@ export const UploadDoc = () => {
         <div className={css.container}>
             <div className={css.card}>
                 <div className={css.block}>
-                    <TextField
+                    <TextField style={{ marginBottom: '10px' }}
                         color='warning'
                         id="outlined-basic" label="№" variant="outlined" value={number} onChange={e => setNumber(e.target.value)} type='text' />
-                    <TextField
+                    <TextField style={{ marginBottom: '10px' }}
                         color='warning'
                         id="outlined-basic" label="Ім'я" variant="outlined" value={name} onChange={e => setName(e.target.value)} type='text' />
-                    <TextField
+                    <TextField 
                         color='warning'
                         id="outlined-basic" label="Дата" variant="outlined" value={datum} onChange={e => setDatum(e.target.value)} type='data' />
                     <Button style={{ backgroundColor: '#098f5a', marginTop: '10px' }} variant="contained" onClick={handlePick}>Вибрати файл</Button>
@@ -84,7 +84,7 @@ export const UploadDoc = () => {
                 </div>
 
             </div >
-            <a href='/accounting/'>
+            <a href='/accounting'>
                 <Button style={{ backgroundColor: '#098f5a' }} disabled={isLoading} variant="contained" onClick={onSubmit}>Зберегти</Button>
             </a>
 
