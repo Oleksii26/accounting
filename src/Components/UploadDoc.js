@@ -4,6 +4,7 @@ import { Button } from "@mui/material"
 import '../index.css'
 import css from './Style.module.css'
 import TextField from '@mui/material/TextField';
+import { Link } from 'react-router-dom'
 
 export const UploadDoc = () => {
     const filePicker = useRef(null)
@@ -83,7 +84,9 @@ export const UploadDoc = () => {
                 </div>
 
             </div >
-            <Button style={{ backgroundColor: '#098f5a' }} variant="contained" href='/accounting/' onClick={onSubmit}>Зберегти</Button>
+            <a href='/accounting/'>
+                <Button style={{ backgroundColor: '#098f5a' }} disabled={isLoading} variant="contained" onClick={onSubmit}>Зберегти</Button>
+            </a>
 
         </div >
     )
