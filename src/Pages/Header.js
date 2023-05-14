@@ -1,12 +1,15 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import css from './Header.module.css'
 
 export const Header = () => {
+  
   return (
-    <div>Header
+    <header className={css.header}>
+      <NavLink className={css.navLink} to='/'>Список</NavLink>
+      <NavLink className={css.navLink} to="/create">Створити</NavLink>
+    </header>
 
-      <Link to="/">Link</Link>
 
-    </div>
 
   )
 }

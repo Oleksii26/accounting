@@ -1,6 +1,9 @@
 import axios from '../axios';
 import { useRef, useState } from 'react'
-// import { Link } from 'react-router-dom'
+import { Button } from "@mui/material"
+import '../index.css'
+import css from './Style.module.css'
+import TextField from '@mui/material/TextField';
 
 export const UploadDoc = () => {
     const filePicker = useRef(null)
@@ -9,12 +12,15 @@ export const UploadDoc = () => {
     const [datum, setDatum] = useState('');
     const [number, setNumber] = useState('');
     const [doc, setDoc] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const handleChange = e => {
         setSelectFile(e.target.files[0])
         console.log(e.target.files);
     }
 
     const handleUpload = async () => {
+        setIsLoading(true)
+
         if (!selectFile) {
             console.log('rorre');
             return
@@ -26,6 +32,8 @@ export const UploadDoc = () => {
 
         console.log(data);
         setDoc(data.result.url)
+        setIsLoading(false)
+
     }
     const handlePick = () => {
         filePicker.current.click()
@@ -52,24 +60,30 @@ export const UploadDoc = () => {
 
 
     return (
-        <div>
-            <div>
-                <input value={number} onChange={e => setNumber(e.target.value)} type='text' /><br />
-                <input value={name} onChange={e => setName(e.target.value)} type='text' /><br />
-                <input value={datum} onChange={e => setDatum(e.target.value)} type='number' /><br />
-            </div >
-            <a href='/accounting/' >
-                <button type='submit' onClick={onSubmit}>Submit</button>
-            </a>
-            <button onClick={handlePick}>Pick file</button>
-            <input
-                type='file'
-                ref={filePicker}
-                onChange={handleChange}
-                hidden
-            />
+        <div className={css.container}>
+            <div className={css.card}>
+                <div className={css.block}>
+                    <TextField
+                        color='warning'
+                        id="outlined-basic" label="№" variant="outlined" value={number} onChange={e => setNumber(e.target.value)} type='text' />
+                    <TextField
+                        color='warning'
+                        id="outlined-basic" label="Ім'я" variant="outlined" value={name} onChange={e => setName(e.target.value)} type='text' />
+                    <TextField
+                        color='warning'
+                        id="outlined-basic" label="Дата" variant="outlined" value={datum} onChange={e => setDatum(e.target.value)} type='data' />
+                    <Button style={{ backgroundColor: '#098f5a', marginTop: '10px' }} variant="contained" onClick={handlePick}>Вибрати файл</Button>
+                    <Button style={{ backgroundColor: '#098f5a', marginTop: '10px' }} disabled={isLoading} variant="contained" onClick={handleUpload}>Завантажити</Button>
+                    <input
+                        type='file'
+                        ref={filePicker}
+                        onChange={handleChange}
+                        hidden
+                    />
+                </div>
 
-            <button onClick={handleUpload}>upload</button>
+            </div >
+            <Button style={{ backgroundColor: '#098f5a' }} variant="contained" href='/accounting/' onClick={onSubmit}>Зберегти</Button>
 
         </div >
     )

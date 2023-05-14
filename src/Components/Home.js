@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { fetchDocs } from '../redux/operations';
 import { Item } from './Item';
 import { Link } from 'react-router-dom'
+import { Button } from "@mui/material"
+import css from './Style.module.css'
 
 
 export const Home = () => {
@@ -14,17 +16,16 @@ export const Home = () => {
     const docs = useSelector(state => state.docs.items)
 
     return (<>
-        <ul>
+
+        <ul className={css.list}>
             {docs.map(e => <li key={e._id}><Item
                 doc={e.doc}
                 name={e.name}
-                number={e.number}
+                number={e.datum}
+                datum={e.number}
                 id={e._id}
             /> </li>)}
         </ul>
-        <Link to='/create'>
-            <button>Create</button>
-        </Link>
     </>
     )
 }
