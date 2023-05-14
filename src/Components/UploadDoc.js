@@ -4,7 +4,7 @@ import { Button } from "@mui/material"
 import '../index.css'
 import css from './Style.module.css'
 import TextField from '@mui/material/TextField';
-import { Link } from 'react-router-dom'
+import { BeatLoader } from 'react-spinners';
 
 export const UploadDoc = () => {
     const filePicker = useRef(null)
@@ -23,7 +23,8 @@ export const UploadDoc = () => {
         setIsLoading(true)
 
         if (!selectFile) {
-            console.log('rorre');
+            setIsLoading(false)
+            alert('Потрібно вибрати файл')
             return
         }
         const formData = new FormData()
@@ -70,7 +71,7 @@ export const UploadDoc = () => {
                     <TextField style={{ marginBottom: '10px' }}
                         color='warning'
                         id="outlined-basic" label="Ім'я" variant="outlined" value={name} onChange={e => setName(e.target.value)} type='text' />
-                    <TextField 
+                    <TextField
                         color='warning'
                         id="outlined-basic" label="Дата" variant="outlined" value={datum} onChange={e => setDatum(e.target.value)} type='data' />
                     <Button style={{ backgroundColor: '#098f5a', marginTop: '10px' }} variant="contained" onClick={handlePick}>Вибрати файл</Button>
@@ -84,9 +85,11 @@ export const UploadDoc = () => {
                 </div>
 
             </div >
-            <a href='/accounting'>
-                <Button style={{ backgroundColor: '#098f5a' }} disabled={isLoading} variant="contained" onClick={onSubmit}>Зберегти</Button>
+            {isLoading ? <BeatLoader color="#098f5a" /> : <a href='/accounting/'>
+                <Button style={{ backgroundColor: '#098f5a' }} variant="contained" onClick={onSubmit}>Зберегти</Button>
             </a>
+            }
+
 
         </div >
     )
