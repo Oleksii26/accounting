@@ -5,8 +5,10 @@ import '../index.css'
 import css from './Style.module.css'
 import TextField from '@mui/material/TextField';
 import { BeatLoader } from 'react-spinners';
+import { useNavigate } from 'react-router-dom';
 
 export const UploadDoc = () => {
+    const navigate = useNavigate()
     const filePicker = useRef(null)
     const [selectFile, setSelectFile] = useState(null);
     const [name, setName] = useState('');
@@ -51,7 +53,7 @@ export const UploadDoc = () => {
             }
             const result = await axios.post('/create', fields)
             console.log(result);
-
+            navigate('/')
             setDatum('')
             setName('')
             setNumber('')
@@ -85,9 +87,9 @@ export const UploadDoc = () => {
                 </div>
 
             </div >
-            {isLoading ? <BeatLoader color="#098f5a" /> : <a href='/accounting/'>
+            {isLoading ? <BeatLoader color="#098f5a" /> : /*{ <a href='/accounting/'> }*/
                 <Button style={{ backgroundColor: '#098f5a' }} variant="contained" onClick={onSubmit}>Зберегти</Button>
-            </a>
+                // </a>
             }
 
 

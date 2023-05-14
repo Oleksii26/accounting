@@ -20,7 +20,7 @@ export const Item = ({ doc, name, number, id, datum }) => {
             </div>
             <div className={css.thumb}>
 
-                <span onClick={removeItem}><b>&#10007;</b></span>
+                <span style={{ cursor: 'pointer' }} onClick={removeItem}><b>&#10007;</b></span>
 
             </div>
         </div>
